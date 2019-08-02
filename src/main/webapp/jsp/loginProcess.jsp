@@ -1,7 +1,7 @@
-<%@page import="java.util.Enumeration"%>
-<%@page import="java.util.Arrays"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.Map"%>
+<%@ page import="java.util.Enumeration"%>
+<%@ page import="java.util.Arrays"%>
+<%@ page import="java.util.Set"%>
+<%@ page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +19,13 @@
 		String userId = request.getParameter("userId");	
 		String password = request.getParameter("password");	
 	 -->
+	 <%
+	 	// parameter 관련 메서드를 호출하기 전에 setCharacterEncoding 메서드를 호출해야 인코딩 설정이 적용된다
+	 	request.setCharacterEncoding("UTF-8");
+	 %>
+	 
+	 request method : <%= request.getMethod() %> <br>
+	 
 	 <%
 	 	String userId = request.getParameter("userId");	
 		String password = request.getParameter("password");

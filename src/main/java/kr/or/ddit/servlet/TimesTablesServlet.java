@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TimesTablesServlet extends HttpServlet {
-	private Logger logger = LoggerFactory.getLogger(TimesTablesServlet.class);
+//	private Logger logger = LoggerFactory.getLogger(TimesTablesServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,11 +20,11 @@ public class TimesTablesServlet extends HttpServlet {
 //		logger.debug("TimesTablesServlet doGet()");
 		String method = req.getMethod();
 		
-		logger.trace("trace");
-		logger.debug("debug {} {}", method, method+"test");
-		logger.info("info");
-		logger.warn("warn");
-		logger.error("error");
+//		logger.trace("trace");
+//		logger.debug("debug {} {}", method, method+"test");
+//		logger.info("info");
+//		logger.warn("warn");
+//		logger.error("error");
 		
 		resp.setContentType("text/html; charset=utf-8");
 		

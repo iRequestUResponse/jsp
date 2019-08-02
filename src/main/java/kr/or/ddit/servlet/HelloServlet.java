@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 // 3. 어떤 url을 해당 서블릿에서 처리할지 매핑
 // 	  (web.xml, servlet 3.0 이후부터는 servlet class 어노테이션으로 설정)
 public class HelloServlet extends HttpServlet {
-	private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class);
+//	private static final Logger logger = LoggerFactory.getLogger(HelloServlet.class);
 	
 	@Override
 	public void init() throws ServletException {
