@@ -12,12 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TimesTablesServlet extends HttpServlet {
-//	private Logger logger = LoggerFactory.getLogger(TimesTablesServlet.class);
+	private Logger logger = LoggerFactory.getLogger(TimesTablesServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		System.out.println("TimesTablesServlet doGet()"); // 이걸 쓰면 안 좋다
-//		logger.debug("TimesTablesServlet doGet()");
+		logger.debug("TimesTablesServlet doGet()");
 		String method = req.getMethod();
 		
 //		logger.trace("trace");
