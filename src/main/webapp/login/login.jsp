@@ -28,7 +28,7 @@
     <%
     	HttpSession httpSession = request.getSession();
     	UserVo userVo = (UserVo) httpSession.getAttribute("S_USERVO");
-    	String userName = userVo == null ? "" : userVo.getUserName();
+    	String userName = userVo == null ? "" : userVo.getUserNm();
     	// String userId = request.getAttribute("userId") == null ? "" : (String) request.getAttribute("userId");
    		String userId = request.getParameter("userId");
     	if (userId == null) userId = "";
@@ -38,10 +38,11 @@
       <form class="form-signin" action="<%= request.getContextPath() %>/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="userId" class="sr-only">user id</label>
-        <input type="text" id="userId" name="userId" value="<%= userId %>" class="form-control" placeholder="your id" required autofocus> <!-- value="brown" -->
+<%--         <input type="text" id="userId" name="userId" value="<%= userId %>" class="form-control" placeholder="your id" required autofocus> <!-- value="brown" --> --%>
+        <input type="text" id="userId" name="userId" value="brown" class="form-control" placeholder="your id" required autofocus> <!-- value="brown" -->
         
         <label for="pass" class="sr-only">Password</label>
-        <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required> <!-- value="brown1234" -->
+        <input type="password" id="pass" name="pass" value="brown1234" class="form-control" placeholder="Password" required> <!-- value="brown1234" -->
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
