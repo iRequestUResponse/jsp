@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.user.model.UserVo"%>
+<%@page import="kr.or.ddit.user.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,16 +14,16 @@
 
 <title>Jsp</title>
 
-<script src="<%= request.getContextPath() %>/js/jquery-3.4.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
 
 <!-- Bootstrap core CSS -->
-<link href="<%= request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<script src="<%= request.getContextPath() %>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Custom styles for this template -->
-<link href="<%= request.getContextPath() %>/css/dashboard.css" rel="stylesheet">
-<link href="<%= request.getContextPath() %>/css/blog.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
 </head>
 
 <body>
@@ -47,8 +47,8 @@
 				<li><a href="#">Profile</a></li>
 				<li><a href="#">Help</a></li>
 				<%
-					UserVo userVo = (UserVo) session.getAttribute("S_USERVO");
-					String userName = userVo == null ? "" : userVo.getUserNm();
+					User userVo = (User) session.getAttribute("S_USERVO");
+							String userName = userVo == null ? "" : userVo.getUserNm();
 				%>
 				<li><a href="#"><%= userName %></a></li>
 			</ul>
