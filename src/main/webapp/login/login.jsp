@@ -30,6 +30,7 @@
      	userId.value = __userId;
      	// remember me checkbox 체크
      	rememberMe.checked = true;
+     	$('#pass').focus();
       }
         
       // signin btn 클릭 이벤트 핸들러
@@ -43,11 +44,13 @@
         // 	기존에 사용자가 아이디를 쿠키에 저장하는 기능을 사용하다가 더 이상 사용하지 않는 경우
         //	처음부터 아이디 쿠키 저장 기능을 사용하지 않는 경우
         //	==> userId 쿠키를 삭제
+        /*
         if (rememberMe.checked) {
 			Cookies.set('userId', userId.value, { expires: 30});
         } else {
 			Cookies.remove('userId');
         }
+        */
         
         // 로그인 요청
         $('#frm').submit();
@@ -79,7 +82,7 @@
         <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required> <!-- value="brown1234" -->
         <div class="checkbox">
           <label>
-            <input id="rememberMe" type="checkbox" value="remember-me"> Remember me
+            <input id="rememberMe" type="checkbox" name="rememberMe" value="remember-me"> Remember me
           </label>
         </div>
         <button id="signinBtn" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
