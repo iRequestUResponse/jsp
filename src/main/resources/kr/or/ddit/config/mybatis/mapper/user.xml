@@ -7,6 +7,10 @@
   <select id="getUserList" resultType="user">
     select * from USERS
   </select>
+	
+  <select id="getUserListOnlyHalf" resultType="user">
+    select * from USERS where rownum &lt;= 50
+  </select>
   
   <select id="getUser" parameterType="String" resultType="user">
   	select 	*

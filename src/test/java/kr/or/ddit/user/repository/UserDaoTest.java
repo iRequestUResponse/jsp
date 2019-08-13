@@ -26,7 +26,25 @@ public class UserDaoTest {
 		List<User> userList = userDao.getUserList();
 
 		/***Then***/
-		assertEquals(5, userList.size());
+		assertEquals(105, userList.size());
+	}
+	
+	/**
+	* Method : getUserListTest
+	* 작성자 : PC-17
+	* 변경이력 :
+	* Method 설명 : getUserListOnlyHalf 테스트
+	*/
+	@Test
+	public void getUserListOnlyHalfTest() {
+		/***Given***/
+		IUserDao userDao = new UserDao();
+		
+		/***When***/
+		List<User> userList = userDao.getUserListOnlyHalf();
+		
+		/***Then***/
+		assertEquals(50, userList.size());
 	}
 	
 	/**
