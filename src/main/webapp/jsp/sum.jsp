@@ -25,7 +25,7 @@
 			result += i;
 		}
 	%>
-	<form action="<%= request.getContextPath() %>/jsp/sum.jsp" method="get">
+	<form action="${ pageContext.request.contextPath }/jsp/sum.jsp" method="get">
 		number : <input type="text" name="number" value="<%= number %>"> <br>
 		number2 : <input type="text" name="number2" value="<%= number2 %>"> <br>
 		<input type="submit">	

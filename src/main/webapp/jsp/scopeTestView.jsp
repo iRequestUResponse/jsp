@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>scope test</h2>
-	<form action="<%= request.getContextPath() %>/scopeTest" method="POST">
+	<form action="${ pageContext.request.contextPath }/scopeTest" method="POST">
 		request : <input type="text" name="reqParam" value="brown"> <br>
 		session : <input type="text" name="sessionParam" value="sally"> <br>
 		application : <input type="text" name="applicationParam" value="cony"> <br>
