@@ -18,9 +18,24 @@
 <title>Jsp</title>
 
 <%@ include file="/commonJsp/basicLib.jsp"%>
+
+<script>
+$(function() {
+	$('.userTr').click(function() {
+		var userId = $('td', this).first().text();
+		
+		$('#userId').val(userId);
+		
+		$('#frm').submit();
+	});
+});
+</script>
 </head>
 
 <body>
+<form id="frm" action="${ cp }/user" method="GET">
+	<input type="hidden" id="userId" name="userId">
+</form>
 
 	<!-- header -->
 	<%@ include file="/commonJsp/header.jsp"%>
@@ -62,7 +77,7 @@
 								%>
 								 --%>
 								<c:forEach items="${ userList }" var="user">
-								<tr>
+								<tr class="userTr">
 									<td>${ user.userId }</td>
 									<td>${ user.userNm }</td>
 									<td>${ user.alias }</td>
