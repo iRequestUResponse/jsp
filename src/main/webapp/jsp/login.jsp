@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${ pageContext.request.contextPath }/js/jquery-3.4.1.min.js"></script>
+<script src="${ cp }/js/jquery-3.4.1.min.js"></script>
 <script>
 $(function() {
 	$('[type=radio]').click(function() {
@@ -53,7 +53,7 @@ $(document).ready(function(){
 	get : <input type="radio" id="get" name="method" value="get" checked>
 	post : <input type="radio" id="post" name="method" value="post">
 	
-	<form action="${ pageContext.request.contextPath }/loginProcess.jsp" method="get">
+	<form action="${ cp }/loginProcess.jsp" method="get">
 		user id : <input type="text" name="userId" value="brown"> <br>
 		user id : <input type="text" name="userId" value="cony"> <br>
 		password : <input type="password" name="password" value="brown1234"> <br>

@@ -18,7 +18,7 @@
 	request.getProtocol() 요청 프로토콜 = <%= request.getProtocol() %> <br>
 	request.getMethod() 요청 메서드 = <%= request.getMethod() %> <br>
 	request.getRequestURI() 요청 RUI = <%= request.getRequestURI() %> <br>
-	request.getContextPath() context path = ${ pageContext.request.contextPath } <br> <!-- 어플 이름이라고 보면 된다 (경로명 : ex : /home -->
+	request.getContextPath() context path = ${ cp } <br> <!-- 어플 이름이라고 보면 된다 (경로명 : ex : /home -->
 	request.getServername() 서버이름 = <%= request.getServerName() %> <br>
 	request.getServerPort() 서버포트 = <%= request.getServerPort() %> <br>
 	

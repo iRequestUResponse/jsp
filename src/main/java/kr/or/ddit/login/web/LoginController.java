@@ -2,6 +2,7 @@ package kr.or.ddit.login.web;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javafx.application.Application;
 import kr.or.ddit.user.model.User;
 import kr.or.ddit.user.repository.IUserDao;
 import kr.or.ddit.user.repository.UserDao;
