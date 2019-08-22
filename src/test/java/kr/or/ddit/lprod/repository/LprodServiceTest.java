@@ -3,29 +3,22 @@ package kr.or.ddit.lprod.repository;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import kr.or.ddit.common.model.Page;
 import kr.or.ddit.lprod.model.Lprod;
-import kr.or.ddit.util.MybatisUtil;
+import kr.or.ddit.lprod.service.ILprodService;
+import kr.or.ddit.lprod.service.LprodService;
 
-public class LprodDaoTest {
-	private SqlSession sqlSession;
-	private ILprodDao lprodDao;
+public class LprodServiceTest {
+	private ILprodService lprodService;
 	
 	@Before
 	public void setup() {
-		sqlSession = MybatisUtil.getSession();
-		lprodDao = new LprodDao();
-	}
-	
-	@After
-	public void tearDown() {
-		sqlSession.close();
+		lprodService = new LprodService();
 	}
 
 	@Test
@@ -33,7 +26,7 @@ public class LprodDaoTest {
 		/***Given***/
 
 		/***When***/
-		List<Lprod> list = lprodDao.getLprodList(sqlSession);
+		List<Lprod> list = lprodService.getLprodList();
 
 		/***Then***/
 		assertEquals(10, list.size());
@@ -42,16 +35,18 @@ public class LprodDaoTest {
 	@Test
 	public void getLprodPagingListTest() {
 		/***Given***/
-
-		/***When***/
 		Page page = new Page();
 		page.setPage(1);
 		page.setSize(5);
-		List<Lprod> list = lprodDao.getLprodPagingList(sqlSession, page);
+
+		/***When***/
+		Map<String, Object> map = lprodService.getLprodPagingList(page);
+		List<Lprod> list = (List<Lprod>) map.get("lprodList");
+		int paginationSize = (Integer) map.get("paginationSize");
 
 		/***Then***/
 		assertEquals(5, list.size());
-		assertEquals("P101", list.get(0).getLprod_gu());
+		assertEquals(2, paginationSize);
 	}
 
 }

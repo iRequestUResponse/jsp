@@ -31,11 +31,15 @@ public class UserPagingListController extends HttpServlet {
 		String pageStr = request.getParameter("page");
 		String sizeStr = request.getParameter("size");
 		
-		Page page = new Page(Integer.parseInt(pageStr), Integer.parseInt(sizeStr));
+		int page = pageStr == null ? 1 : Integer.parseInt(pageStr);
+		int size = sizeStr == null ? 10 : Integer.parseInt(sizeStr);
+		
+		Page p = new Page(page, size);
+		request.setAttribute("pageVo", p);
 		
 		// userService 객체를 이용하여 getUserPagingList를 호출
 		// 반환된 사용자 리스트를 request 객체에 속성으로 저장
-		Map<String, Object> resultMap = userService.getUserPagingList(page); 
+		Map<String, Object> resultMap = userService.getUserPagingList(p); 
 		List<User> userList = (List<User>) resultMap.get("userList");
 		int paginationSize = (Integer) resultMap.get("paginationSize");
 		
