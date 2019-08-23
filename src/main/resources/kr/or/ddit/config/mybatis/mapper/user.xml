@@ -33,4 +33,15 @@
   <select id="getUserTotalCnt" resultType="Integer">
   	select count(1) from USERS
   </select>
+  
+  <!-- 사용자 등록 -->
+  <insert id="insertUser" parameterType="user">
+  	insert into USERS (userid, usernm, alias, reg_dt, addr1, addr2, zipcode, pass)
+  	values (#{userId}, #{userNm}, #{alias}, #{reg_dt}, #{addr1}, #{addr2}, #{zipcode}, #{pass})
+  </insert>
+  
+  <!-- 사용자 삭제 -->
+  <delete id="deleteUser" parameterType="String">
+  	delete USERS where userid = #{userid}
+  </delete>
 </mapper>

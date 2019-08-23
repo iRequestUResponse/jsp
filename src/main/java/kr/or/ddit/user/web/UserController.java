@@ -40,6 +40,8 @@ public class UserController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("UserController.doPost");
+		doGet(request, response);
 	}
 
 }

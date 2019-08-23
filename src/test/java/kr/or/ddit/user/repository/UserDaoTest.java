@@ -2,6 +2,8 @@ package kr.or.ddit.user.repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +22,8 @@ public class UserDaoTest {
 	
 	private IUserDao userDao;
 	private SqlSession sqlSession;
+
+	private String userId = "brownTest";
 	
 	// JUNIT 테스트 메서드 실행 순서
 	// @Before -> @Test -> @After
@@ -32,6 +36,8 @@ public class UserDaoTest {
 		logger.debug("before");
 		userDao = new UserDao();
 		sqlSession = MybatisUtil.getSession();
+		
+		userDao.deleteUser(sqlSession, userId);
 	}
 	
 	// 테스트에 공통적으로 사용한 자원을 해제
@@ -133,5 +139,33 @@ public class UserDaoTest {
 
 		/***Then***/
 		assertEquals(105, totalCnt);
+	}
+	
+	/**
+	* Method : insertUserTest
+	* 작성자 : PC-17
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	 * @throws ParseException 
+	*/
+//	@Test
+	public void insertUserTest() throws ParseException {
+		/***Given***/
+		User user = new User();
+		user.setUserId(userId);	
+		user.setUserNm("브라운테스트");
+		user.setPass("brownTest1234");
+		user.setReg_dt(new SimpleDateFormat("yyyy-MM-dd").parse("2019-08-08"));
+		user.setAlias("곰테스트");
+		user.setAddr1("대전광역시 중구 중앙로 76");
+		user.setAddr2("영민빌딩 2층 DDIT");
+		user.setZipcode("34940");
+
+		/***When***/
+		int insertCnt = userDao.insertUser(sqlSession, user);
+		sqlSession.commit();
+
+		/***Then***/
+		assertEquals(1, insertCnt);
 	}
 }
