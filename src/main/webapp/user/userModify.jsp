@@ -18,22 +18,11 @@
 <title>Jsp</title>
 
 <%@ include file="/commonJsp/basicLib.jsp"%>
+<c:set var="user" value="${ user }" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
 $(function() {
-	// 사용자 등록 버튼 클릭 이벤트 핸들러
-	$('#regBtn').on('click', function() {
-		var userIdValidationChk = /^[a-zA-Z](\w|\.(?!\.)){4,19}$/.test($('#userId').val());
-		if (!userIdValidationChk) {
-			alert('사용자 아이디가 유효하지 않습니다');
-			$('#userId').val('').focus();
-			return false;
-		}
-		
-		// submit
-// 		$('#frm').submit();
-	});
 	
 	// 우편번호 검색 버튼 클릭 이벤트 핸들러
 	$("#zipcodeBtn").on('click', function() {
@@ -45,21 +34,10 @@ $(function() {
 	    }).open();
 	});
 });
-function setTestData() {
-	$('#userId').val('brownTest');
-	$('#userNm').val('브라운테스트');
-	$('#alias').val('곰테스트');
-	$('#reg_dt').val('2019-08-08');
-	$('#addr1').val('대전광역시 중구 중앙로 76');
-	$('#addr2').val('영민빌딩 2층 DDIT');
-	$('#zipcode').val('34940');
-	$('#pass').val('brownTest1234');
-}
 </script>
 </head>
 
 <body>
-
 	<!-- header -->
 	<%@ include file="/commonJsp/header.jsp"%>
 
@@ -72,25 +50,30 @@ function setTestData() {
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<form id="frm" class="form-horizontal" role="form"
-						action="${ cp }/userForm" method="post"
+						action="${ cp }/userModify" method="post"
 						enctype="multipart/form-data"
 				>
-
+					
 					<div class="form-group">
 						<label for=picture" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
+							<img src="${ cp }/userPicture?userId=${ user.userId }">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for=picture" class="col-sm-2 control-label">사용자 사진 변경</label>
+						<div class="col-sm-10">
 							<input type="file" class="form-control" id="picture" name="picture"
 								placeholder="사용자 사진">
-							${ userIdMsg }
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="userId" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userId" name="userId"
-								placeholder="사용자 아이디" value="${ param.userId }">
-							${ userIdMsg }
+							<span>${ user.userId }</span>
+							<input type="hidden" name="userId" value="${ user.userId }">
 						</div>
 					</div>
 
@@ -98,14 +81,14 @@ function setTestData() {
 						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userNm" name="userNm"
-								placeholder="사용자 이름" value="${ param.userNm }">
+								placeholder="사용자 이름" value="${ user.userNm }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="alias" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="alias"
-								name="alias" placeholder="별명" value="${ param.alias }">
+								name="alias" placeholder="별명" value="${ user.alias }">
 						</div>
 					</div>
 					
@@ -113,7 +96,7 @@ function setTestData() {
 						<label for="reg_dt" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
 							<input type="date" class="form-control" id="reg_dt"
-								name="reg_dt" placeholder="생일" value="${ param.reg_dt }">
+								name="reg_dt" placeholder="생일" value="${ user.reg_dt_sdf }">
 						</div>
 					</div>
 					
@@ -121,7 +104,7 @@ function setTestData() {
 						<label for="addr1" class="col-sm-2 control-label">주소1</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control" id="addr1"
-								name="addr1" placeholder="주소1" readonly value="${ param.addr1 }">
+								name="addr1" placeholder="주소1" readonly value="${ user.addr1 }">
 						</div>
 						<div class="col-sm-2">
 							<button type="button" class="btn btn-default" id="zipcodeBtn">우편번호</button>
@@ -132,7 +115,7 @@ function setTestData() {
 						<label for="addr2" class="col-sm-2 control-label">주소2</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="addr2"
-								name="addr2" placeholder="주소2" value="${ param.addr2 }">
+								name="addr2" placeholder="주소2" value="${ user.addr2 }">
 						</div>
 					</div>
 					
@@ -140,7 +123,7 @@ function setTestData() {
 						<label for="zipcode" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="zipcode"
-								name="zipcode" placeholder="우편번호" readonly value="${ param.zipcode }">
+								name="zipcode" placeholder="우편번호" readonly value="${ user.zipcode }">
 						</div>
 					</div>
 					
@@ -149,6 +132,14 @@ function setTestData() {
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="pass"
 								name="pass" placeholder="비밀번호">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="userRegDt" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="pass2"
+								placeholder="비밀번호">
 						</div>
 					</div>
 

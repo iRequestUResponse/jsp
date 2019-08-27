@@ -18,6 +18,14 @@
 <title>Jsp</title>
 
 <%@ include file="/commonJsp/basicLib.jsp"%>
+<script>
+$(function() {
+	$('[type=submit]').click(function(event) {
+		event.preventDefault();
+		location.href = '${ cp }/userModify?userId=${ user.userId }';
+	});
+})
+</script>
 </head>
 
 <body>
@@ -34,6 +42,14 @@
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<form class="form-horizontal" role="form">
+
+					<div class="form-group">
+						<label for="picture" class="col-sm-2 control-label">사용자 사진</label>
+						<div class="col-sm-10">
+<%-- 							<img id="picture" src="${ cp }${ user.realfilename2 }"> --%>
+							<img src="${ cp }/userPicture?userId=${ user.userId }">
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>

@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.common.model.Page;
 import kr.or.ddit.user.model.User;
@@ -19,6 +21,7 @@ public class UserServiceTest {
 	
 	private IUserService userService;
 	private String userId = "brownTest";
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 	
 	@Before
 	public void setup() {
@@ -58,6 +61,7 @@ public class UserServiceTest {
 		
 		/***When***/
 		User userVo = userService.getUser(userId);
+		logger.debug("getUser Test {}", userVo);
 
 		/***Then***/
 		assertEquals("브라운", userVo.getUserNm());
@@ -134,5 +138,19 @@ public class UserServiceTest {
 
 		/***Then***/
 		assertEquals(1, insertCnt);
+	}
+	
+	@Test
+	public void updateUserTest() {
+		/***Given***/
+		User user = userService.getUser(userId);
+
+		/***When***/
+		user.setUserNm("asdf");
+		userService.updateUser(user);
+		User user2 = userService.getUser(userId);
+
+		/***Then***/
+		assertEquals("asdf", user2.getUserNm());
 	}
 }

@@ -79,4 +79,13 @@ public class UserService implements IUserService {
 		sqlSession.close();
 		return cnt;
 	}
+
+	@Override
+	public int updateUser(User user) {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		int cnt = userDao.updateUser(sqlSession, user);
+		sqlSession.commit();
+		sqlSession.close();
+		return cnt;
+	}
 }

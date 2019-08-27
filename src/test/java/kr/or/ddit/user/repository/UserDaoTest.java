@@ -148,7 +148,7 @@ public class UserDaoTest {
 	* Method 설명 : 사용자 등록 테스트
 	 * @throws ParseException 
 	*/
-//	@Test
+	@Test
 	public void insertUserTest() throws ParseException {
 		/***Given***/
 		User user = new User();
@@ -167,5 +167,20 @@ public class UserDaoTest {
 
 		/***Then***/
 		assertEquals(1, insertCnt);
+	}
+	
+	@Test
+	public void updateUserTest() {
+		/***Given***/
+		User user = userDao.getUser(sqlSession, "brownTest");
+
+		/***When***/
+		user.setUserNm("asdf");
+		userDao.updateUser(sqlSession, user);
+		User user2 = userDao.getUser(sqlSession, "brownTest");
+
+		/***Then***/
+		assertEquals("brownTest", user.getUserId());
+		assertEquals("asdf", user2.getUserNm());
 	}
 }
