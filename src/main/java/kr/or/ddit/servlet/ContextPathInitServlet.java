@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 /**
  * Servlet implementation class ContextPathInitServlet
  */
-@WebServlet(urlPatterns = "/ContextPathInitServlet", loadOnStartup = 1)
+//@WebServlet(urlPatterns = "/ContextPathInitServlet", loadOnStartup = 1)
 public class ContextPathInitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
