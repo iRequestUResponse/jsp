@@ -3,6 +3,9 @@ package kr.or.ddit.user.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +27,7 @@ import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 *
 * </pre>
 */
-public class User {
+public class User  implements HttpSessionBindingListener {
 	private static final Logger logger = LoggerFactory.getLogger(User.class);
 	
 	private String userNm;		// 사용자 이름
@@ -168,5 +171,15 @@ public class User {
 	public boolean checkLoginValidate(String userId, String pass) {
 		// 암호화 문장끼리 비교
 		return userId.equals(this.getUserId()) && KISA_SHA256.encrypt(pass).equals(this.getPass());
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		logger.debug("value bound");
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		logger.debug("value unbound");
 	}
 }
